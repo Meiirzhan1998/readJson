@@ -1,18 +1,18 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.nio.file.Paths;
-import java.util.Map;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) {
-        try {
-            ObjectMapper mapper = new ObjectMapper();
-            Map<?, ?> map = mapper.readValue(Paths.get("students3.json").toFile(), Map.class);
-            for (Map.Entry<?, ?> entry : map.entrySet()) {
-                System.out.println(entry.getKey() + "=" + entry.getValue());
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+    public static void main(String[] args) throws IOException {
+
+        ObjectMapper mapper = new ObjectMapper();
+
+        FileReader reader = new FileReader("students.json");
+
+        Students student = mapper.readValue(reader, Students.class);
+
+        System.out.println(student);
+
     }
 }
